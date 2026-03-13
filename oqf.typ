@@ -1,9 +1,5 @@
 #let oqf(file) = {
-  let file = read(file)
-  if (bytes(file.slice(0,7)) != bytes((0x2A, 0x2A, 0x4F, 0x51, 0x46, 0x2A, 0x0A))) {
-    return [Invalid File Header: `#file.slice(0,6)`]
-  }
-  let raw = bytes(file.slice(7))
+  let raw = bytes(read(file))
   let data = ()
   let q = -1
   let a = 0

@@ -6,19 +6,7 @@ quizzes. It attempts to be as simple to use as possible for anyone to use.
 ## Format
 
 A `.oqf` file can be made in any text editor and has an extremely simple
-format.
-
-### Header
-
-An OQF File header consists of the following line
-
-```oqf
-**OQF*
-```
-
-### Questions & Answers
-
-Questions and answers are formatted with the following syntax:
+format. Questions and answers are formatted with the following syntax:
 
 ```oqf
 :Question
@@ -73,7 +61,7 @@ previous FAQ, it is VERY inefficient.
 
 Kahoot's sample spreadsheet (which kindly enough contains a starter question)
 takes up 27.2 kB according to nushell's `ls`. This same exact quiz rewritten with
-OQF (available at [kahoot.oqf](./kahoot.oqf)) takes up 125 B according to
+OQF (available at [kahoot.oqf](./kahoot.oqf)) takes up 118 B according to
 nushell's `ls`. That's almost a 225x size reduction. This makes a lot of sense
 when you consider the fact that a spreadsheet also has to carry info about
 styling, images, grouped cells, and probably more that I'm missing.
@@ -85,3 +73,4 @@ styling, images, grouped cells, and probably more that I'm missing.
 - [x] Add a points field (for compatibility with Google Forms)
 - [x] Add a signifier for optional questions (for compatibility with Google Forms)
 - [ ] Write a parser in Go
+- [x] Remove Header
