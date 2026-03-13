@@ -4,16 +4,21 @@
     return [Invalid File Header: `#file.slice(0,6)`]
   }
   let raw = bytes(file.slice(7))
-  let flags = ""
   let data = ()
   let q = -1
   let a = 0
+  let t = ""
   let flag = ""
   for chr in raw {
     if flag == "" {
       if (chr == bytes(":").at(0)) {
         data.insert(0, 
-          (title: "", choices: (), answers: ())
+          (
+            title: "",
+            choices: (),
+            answers: (),
+            comment: "",
+          )
         )
         q+=1
         flag = "T"
@@ -34,6 +39,8 @@
           data.at(0).choices.insert(a, "")
           data.at(0).answers.insert(a, false)
           flag = "QN"
+        } else if chr == bytes("#").at(0){
+          flag = "QK"
         } else if chr == bytes(";").at(0) {
           a = 0
           q+= 1
@@ -48,6 +55,12 @@
           flag = ""
         } else {
           data.at(0).choices.at(a) += str.from-unicode(chr)
+        }
+      } else if flag.at(1) == "K" {
+        if chr == 0x0A {
+          flag = "QD"
+        } else {
+          data.at(0).comment += str.from-unicode(chr)
         }
       }
     } 
