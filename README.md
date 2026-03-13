@@ -24,13 +24,13 @@ More advanced syntax can be observed in [test.oqf](./test.oqf)
 ### Where can I use this?
 
 Right now, the only place that I have a parser for is
-[Typst](https://typst.app), but I hope to write a parser in Go sometime in the
-future. I might even write one in rust if I feel like it.
+[Typst](https://typst.app), I'm working on a Library for Go and I might even
+write one in rust if I feel like it.
 
 ### I want to use this in my project!
 
 Awesome! If there's a library for your preferred language, great! If not,
-take a look at [oqf.typ](./oqf.typ) for a reference implementation.
+take a look at [lib.typ](./src/typst/lib.typ) for a reference implementation.
 
 ### Why is the reference implementation written with Typst?
 
