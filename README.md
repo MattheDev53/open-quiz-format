@@ -71,11 +71,18 @@ previous FAQ, it is VERY inefficient.
 ### Okay, but how does it actually compare to Kahoot's method?
 
 Kahoot's sample spreadsheet (which kindly enough contains a starter question)
-takes up 27.2 kB according to nushell's ls. This same exact\* quiz rewritten with
+takes up 27.2 kB according to nushell's `ls`. This same exact\* quiz rewritten with
 OQF (available at [sample.oqf](./sample.oqf)) takes up 121 B according to
-nushell's ls. That's almost a 225x size reduction. This makes a lot of sense
+nushell's `ls`. That's almost a 225x size reduction. This makes a lot of sense
 when you consider the fact that a spreadsheet also has to carry info about
-styling, images, grouped cells, and probabl more that I'm missing.
+styling, images, grouped cells, and probably more that I'm missing.
 
 \*Technically, the quiz is not exact, as it cannot store time information
 (yet...)
+
+## TODO
+
+- [ ] Add a comment field (Could be used for multiple things)
+- [ ] Add a time limit field (for compatibility with Kahoot)
+- [ ] Add a points field (for compatibility with Google Forms)
+- [ ] Add a signifier for optional questions (for compatibility with Google Forms)
