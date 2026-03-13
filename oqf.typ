@@ -18,6 +18,8 @@
             choices: (),
             answers: (),
             comment: "",
+            time: -1,
+            required: true,
           )
         )
         q+=1
@@ -45,7 +47,11 @@
           a = 0
           q+= 1
           flag = ""
-        }
+        } else if chr == bytes("?").at(0) {
+          data.at(0).required = false
+        } else if chr == bytes("\"").at(0) {
+          flag = "QT"
+        } 
       } else if flag.at(1) == "N" {
         if chr == 0x0A {
           a += 1
@@ -61,6 +67,14 @@
           flag = "QD"
         } else {
           data.at(0).comment += str.from-unicode(chr)
+        }
+      } else if flag.at(1) == "T" {
+        if chr == 0x0A {
+          data.at(0).time = int(t)
+          flag = "QD"
+          t = ""
+        } else {
+          t += str.from-unicode(chr)
         }
       }
     } 

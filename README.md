@@ -83,6 +83,6 @@ styling, images, grouped cells, and probably more that I'm missing.
 ## TODO
 
 - [x] Add a comment field (Could be used for multiple things)
-- [ ] Add a time limit field (for compatibility with Kahoot)
+- [x] Add a time limit field (for compatibility with Kahoot)
 - [ ] Add a points field (for compatibility with Google Forms)
-- [ ] Add a signifier for optional questions (for compatibility with Google Forms)
+- [x] Add a signifier for optional questions (for compatibility with Google Forms)
