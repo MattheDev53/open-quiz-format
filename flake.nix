@@ -5,7 +5,6 @@
   };
   outputs =
     {
-      self,
       nixpkgs,
       systems,
       ...
@@ -20,7 +19,6 @@
           pkgs = import nixpkgs { system = "${system}"; };
         in
         {
-          default = self.packages.${system}.oqf.go;
           oqf = {
             go = pkgs.callPackage ./src/go/default.nix { };
           };

@@ -1,9 +1,8 @@
-package main
+package oqf
 
 import (
 	"fmt"
-	"log"
-	"os"
+	"strings"
 	"strconv"
 )
 
@@ -18,23 +17,24 @@ type Question struct {
 }
 
 var DefaultQuestion = Question{
-	Time:     -1,
 	Required: true,
 }
 
-func Parse(raw []byte) ([]Question, error) {
-	data := make([]Question, 20)
+func Parse(raw []byte) []Question {
+	data := make([]Question, 0)
 	q := -1
 	a := 0
 	t := ""
 	flag := ""
 	for _, chr := range raw {
-		log.Printf("flag = [%s], chr = [%s]\n", flag, string(chr))
-		if len(flag) == 0 && chr == ':' {
+		if len(flag) == 0 {
+			if chr == ':' {
 				data = append(data, DefaultQuestion)
 				q += 1
 				flag = "T"
 				continue
+			}
+			continue
 		}
 		switch flag[0] {
 		case 'T':
@@ -84,13 +84,13 @@ func Parse(raw []byte) ([]Question, error) {
 				if chr == 0x0A {
 					flag = "QD"
 				} else {
-					data[0].Comment += string(chr)
+					data[q].Comment += string(chr)
 				}
 			case 'T':
 				if chr == 0x0A {
 					time, err := strconv.Atoi(t)
 					if err != nil {
-						time = -1
+						time = 0
 					}
 					data[q].Time = time
 					flag = "QD"
@@ -102,7 +102,7 @@ func Parse(raw []byte) ([]Question, error) {
 				if chr == 0x0A {
 					pts, err := strconv.Atoi(t)
 					if err != nil {
-						pts = -1
+						pts = 0
 					}
 					data[q].Points = pts
 					flag = "QD"
@@ -113,16 +113,39 @@ func Parse(raw []byte) ([]Question, error) {
 			}
 		}
 	}
-	return data, nil
+	return data
 }
 
-func main() {
-	fmt.Println("File")
-	file, err := os.ReadFile(os.Args[1])
-	if err != nil {
-		panic(err)
+func (q Question) ToBytes() []byte {
+	var s strings.Builder
+	s.Write(fmt.Appendf([]byte{}, ":%s", q.Title))
+	if q.Comment != "" {
+		s.Write(fmt.Appendf([]byte{}, "\n#%s", q.Comment))
 	}
-	fmt.Println("Parse")
-	q, _ := Parse(file)
-	fmt.Println(q[0])
+	if q.Time != 0 {
+		s.Write(fmt.Appendf([]byte{}, "\n\"%d", q.Time))
+	}
+	if q.Points != 0 {
+		s.Write(fmt.Appendf([]byte{}, "\n/%d", q.Points))
+	}
+	if !q.Required {
+		s.Write([]byte{0x0A,'?'})
+	}
+	for i := range(q.Choices) {
+		if q.Answers[i] {
+			s.Write(fmt.Appendf([]byte{}, "\n=%s", q.Choices[i]))
+		} else {
+			s.Write(fmt.Appendf([]byte{}, "\n!%s", q.Choices[i]))
+		}
+	}
+	s.Write([]byte{';',0x0A,0x0A})
+	return []byte(s.String())
+}
+
+func Compose(q []Question) []byte {
+	var b []byte
+	for _, i := range(q) {
+		b = append(b, i.ToBytes()...)
+	}
+	return b[0:len(b)-1]
 }
