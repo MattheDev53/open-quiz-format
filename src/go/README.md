@@ -1,4 +1,4 @@
-# Open Quiz Format for Typst
+# Open Quiz Format for Go
 
 The Open Quiz Format (OQF) is a markup language for creating multiple choice
 quizzes. It attempts to be as simple to use as possible for anyone to use.
@@ -21,4 +21,4 @@ See the GitHub Repo for more detailed information
 
 ## Additional Notes
 
-...
+This is the preferred reference implementation of OQF

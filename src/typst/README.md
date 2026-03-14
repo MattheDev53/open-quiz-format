@@ -21,5 +21,7 @@ See the GitHub Repo for more detailed information
 
 ## Additional Notes
 
-This is the reference implementation for OQF. If one is looking to create a
-library for OQF, use this as a reference
+This is the original reference implementation for OQF. If one is looking to
+create a library for OQF, use the
+[Go](https://pkg.go.dev/github.com/MattheDev53/open-quiz-format/src/go)
+implementation.

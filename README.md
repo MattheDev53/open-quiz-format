@@ -23,16 +23,18 @@ More advanced syntax can be observed in [test.oqf](./test.oqf)
 
 ### Where can I use this?
 
-Right now, the only place that I have a parser for is
-[Typst](https://typst.app), I'm working on a Library for Go and I might even
-write one in rust if I feel like it.
+You can (officially) use this in Typst and in Go
+([docs](https://pkg.go.dev/github.com/MattheDev53/open-quiz-format/src/go))
+as of now. I'll write a Rust and Python port soon.
 
 ### I want to use this in my project!
 
 Awesome! If there's a library for your preferred language, great! If not,
-take a look at [lib.typ](./src/typst/lib.typ) for a reference implementation.
+either wait for someone to make one, or make it yourself! Take a look at
+[oqf.go](./src/go/oqf.go) or [lib.typ](./src/typst/lib.typ) (the original
+reference implementation) for a reference implementation.
 
-### Why is the reference implementation written with Typst?
+### Why was the original reference implementation written with Typst?
 
 I came up with this idea in school, so I had no access to compilers when coming
 up with the idea. I did, however, have access to Typst.
@@ -76,4 +78,3 @@ styling, images, grouped cells, and probably more that I'm missing.
 - [x] Remove Header
 - [ ] Write a parser in Rust
 - [ ] Write a parser in Python
-- [ ] Write a parser in Java
