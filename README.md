@@ -72,5 +72,8 @@ styling, images, grouped cells, and probably more that I'm missing.
 - [x] Add a time limit field (for compatibility with Kahoot)
 - [x] Add a points field (for compatibility with Google Forms)
 - [x] Add a signifier for optional questions (for compatibility with Google Forms)
-- [ ] Write a parser in Go
+- [x] Write a parser in Go
 - [x] Remove Header
+- [ ] Write a parser in Rust
+- [ ] Write a parser in Python
+- [ ] Write a parser in Java
