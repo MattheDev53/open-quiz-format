@@ -13,6 +13,7 @@ const (
 	Title
 	QuestionDormant
 	QuestionName
+	Comment
 	Time
 	Points
 )
